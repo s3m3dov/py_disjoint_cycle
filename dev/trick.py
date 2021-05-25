@@ -1,9 +1,5 @@
 # Write a program that writes a given permutation as a product of disjoint cycles (and of transpositions).
 
-
-# Gets inputPermutations
-# Creates mappedPermutations
-# Return list of cycles as a whole list
 def ReturnDisjointCyclesAsList(inputPermutations):
     mappedPermutations = dict()
     resultDisjointCycles = list()
@@ -11,16 +7,14 @@ def ReturnDisjointCyclesAsList(inputPermutations):
     for i in (range(len(inputPermutations))):
         mappedPermutations[i + 1] = inputPermutations[i]
 
-    # Main Logic
     while mappedPermutations != {}:
-        pastValue = list(mappedPermutations.keys())[0] # Get first index for mapped permutation
-        tempList = [pastValue] # List for each cycle
+        pastValue = list(mappedPermutations.keys())[0] 
+        tempList = [pastValue] 
 
         while True:
             actualValue = mappedPermutations[pastValue]
-            del mappedPermutations[pastValue] # Delete mapped permutation (1 -> 5) after 5 is actualValue
+            del mappedPermutations[pastValue] 
 
-            # For ex. 1 -> 5 -> 4 -> 1 or 2 -> 2
             if tempList[0] == actualValue or pastValue == actualValue:
                 break 
             else:
@@ -28,11 +22,9 @@ def ReturnDisjointCyclesAsList(inputPermutations):
                 pastValue = actualValue
         
         resultDisjointCycles.append(tempList)
-    # Return
     return resultDisjointCycles
 
 
-# Return Transpositions of Cycle (> 2)
 def ReturnTranspositionOfOneCycleAsList(cycle):
     resultTranspositions = []
     revCycle = cycle[::-1]
@@ -44,8 +36,6 @@ def ReturnTranspositionOfOneCycleAsList(cycle):
     return resultTranspositions
 
 
-# Get disjointCycles
-# Returns 2-cycles (a.k.a transposition)
 def ReturnTranspositionCyclesAsList(disjointCycles):
     resultTranspositionedCycles = []
 
@@ -62,14 +52,11 @@ def ReturnTranspositionCyclesAsList(disjointCycles):
 
 
 
-# Return: List of Cycles except 1-cycles
 def ReturnCyclesExceptOneCycle(resultCycles):
     return [cycle for cycle in resultCycles if len(cycle) > 1]
 
 
 
-# Gets list of cycles and 
-# Returns them like we write in paper
 def ReturnCyclesAsString(resultCycles):
     resultString = ""
 
@@ -95,7 +82,6 @@ if __name__ == '__main__':
         print("We don't need to show cycle as a product of transpositions")
 
 
-    # Other Version of Printing
     print("---------------------------------------------\n")
 
     disjointCycles = ReturnCyclesExceptOneCycle(ReturnDisjointCyclesAsList(inputPermutations))
